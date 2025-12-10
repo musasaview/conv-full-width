@@ -20,8 +20,8 @@ const ALNUM_DIFF = "Ａ".codePointAt(0)! - "A".codePointAt(0)!;
 
 export function toHalf(str: string) {
     return str
-        .replace(/[、-ー。]+/gu, m => [...m].map(c => MAP[c] || c).join(""))
-        .replace(/[！-～]/g, c => String.fromCodePoint(c.codePointAt(0)! - ALNUM_DIFF));
+        .normalize("NFKC")
+        .replace(/[、-ー]/gu, c => MAP[c] || c);
 }
 
 export function toFull(str: string) {
